@@ -145,149 +145,47 @@ def gradio_interface(
     return str(out)  # Return as string for Gradio display
 
 
-# === GRADIO UI CONFIGURATION ===
-# Build comprehensive Gradio interface with all customer features
-# demo = gr.Interface(
-#     fn=gradio_interface,
-#     inputs=[
-#         # Demographics section
-#         gr.Dropdown(["Male", "Female"], label="Gender", value="Male"),
-#         gr.Dropdown(["Yes", "No"], label="Partner", value="No"),
-#         gr.Dropdown(["Yes", "No"], label="Dependents", value="No"),
-#         # Phone services section
-#         gr.Dropdown(["Yes", "No"], label="Phone Service", value="Yes"),
-#         gr.Dropdown(
-#             ["Yes", "No", "No phone service"], label="Multiple Lines", value="No"
-#         ),
-#         # Internet services section (key churn predictors)
-#         gr.Dropdown(
-#             ["DSL", "Fiber optic", "No"], label="Internet Service", value="Fiber optic"
-#         ),
-#         gr.Dropdown(
-#             ["Yes", "No", "No internet service"], label="Online Security", value="No"
-#         ),
-#         gr.Dropdown(
-#             ["Yes", "No", "No internet service"], label="Online Backup", value="No"
-#         ),
-#         gr.Dropdown(
-#             ["Yes", "No", "No internet service"], label="Device Protection", value="No"
-#         ),
-#         gr.Dropdown(
-#             ["Yes", "No", "No internet service"], label="Tech Support", value="No"
-#         ),
-#         gr.Dropdown(
-#             ["Yes", "No", "No internet service"], label="Streaming TV", value="Yes"
-#         ),
-#         gr.Dropdown(
-#             ["Yes", "No", "No internet service"], label="Streaming Movies", value="Yes"
-#         ),
-#         # Contract and billing section (major churn factors)
-#         gr.Dropdown(
-#             ["Month-to-month", "One year", "Two year"],
-#             label="Contract",
-#             value="Month-to-month",
-#         ),
-#         gr.Dropdown(["Yes", "No"], label="Paperless Billing", value="Yes"),
-#         gr.Dropdown(
-#             [
-#                 "Electronic check",
-#                 "Mailed check",
-#                 "Bank transfer (automatic)",
-#                 "Credit card (automatic)",
-#             ],
-#             label="Payment Method",
-#             value="Electronic check",
-#         ),
-#         # Numeric features (important for churn prediction)
-#         gr.Number(label="Tenure (months)", value=1, minimum=0, maximum=100),
-#         gr.Number(label="Monthly Charges ($)", value=85.0, minimum=0, maximum=200),
-#         gr.Number(label="Total Charges ($)", value=85.0, minimum=0, maximum=10000),
-#     ],
-#     outputs=gr.Textbox(label="Churn Prediction", lines=2),
-#     title="🔮 Telco Customer Churn Predictor",
-#     description="""
-#     **Predict customer churn probability using machine learning**
-
-#     Fill in the customer details below to get a churn prediction. The model uses XGBoost trained on
-#     historical telecom customer data to identify customers at risk of churning.
-
-#     💡 **Tip**: Month-to-month contracts with fiber optic internet and electronic check payments
-#     tend to have higher churn rates.
-#     """,
-#     examples=[
-#         # High churn risk example
-#         [
-#             "Female",
-#             "No",
-#             "No",
-#             "Yes",
-#             "No",
-#             "Fiber optic",
-#             "No",
-#             "No",
-#             "No",
-#             "No",
-#             "Yes",
-#             "Yes",
-#             "Month-to-month",
-#             "Yes",
-#             "Electronic check",
-#             1,
-#             85.0,
-#             85.0,
-#         ],
-#         # Low churn risk example
-#         [
-#             "Male",
-#             "Yes",
-#             "Yes",
-#             "Yes",
-#             "Yes",
-#             "DSL",
-#             "Yes",
-#             "Yes",
-#             "Yes",
-#             "Yes",
-#             "No",
-#             "No",
-#             "Two year",
-#             "No",
-#             "Credit card (automatic)",
-#             60,
-#             45.0,
-#             2700.0,
-#         ],
-#     ],
-#     theme=gr.themes.Soft(),  # Professional appearance
-# )
-
-# # === MOUNT GRADIO UI INTO FASTAPI ===
-# # This creates the /ui endpoint that serves the Gradio interface
-# # IMPORTANT: This must be the final line to properly integrate Gradio with FastAPI
-# app = gr.mount_gradio_app(
-#     app,  # FastAPI application instance
-#     demo,  # Gradio interface
-#     path="/ui",  # URL path where Gradio will be accessible
-# )
-
-
 demo = gr.Interface(
     fn=gradio_interface,
     inputs=[
-        gr.Dropdown(["Male", "Female"], label="Gender"),
-        gr.Dropdown(["Yes", "No"], label="Partner"),
-        gr.Dropdown(["Yes", "No"], label="Dependents"),
-        gr.Dropdown(["Yes", "No"], label="Phone Service"),
-        gr.Dropdown(["Yes", "No", "No phone service"], label="Multiple Lines"),
-        gr.Dropdown(["DSL", "Fiber optic", "No"], label="Internet Service"),
-        gr.Dropdown(["Yes", "No", "No internet service"], label="Online Security"),
-        gr.Dropdown(["Yes", "No", "No internet service"], label="Online Backup"),
-        gr.Dropdown(["Yes", "No", "No internet service"], label="Device Protection"),
-        gr.Dropdown(["Yes", "No", "No internet service"], label="Tech Support"),
-        gr.Dropdown(["Yes", "No", "No internet service"], label="Streaming TV"),
-        gr.Dropdown(["Yes", "No", "No internet service"], label="Streaming Movies"),
-        gr.Dropdown(["Month-to-month", "One year", "Two year"], label="Contract"),
-        gr.Dropdown(["Yes", "No"], label="Paperless Billing"),
+        # Demographics section
+        gr.Dropdown(["Male", "Female"], label="Gender", value="Male"),
+        gr.Dropdown(["Yes", "No"], label="Partner", value="No"),
+        gr.Dropdown(["Yes", "No"], label="Dependents", value="No"),
+        # Phone services section
+        gr.Dropdown(["Yes", "No"], label="Phone Service", value="Yes"),
+        gr.Dropdown(
+            ["Yes", "No", "No phone service"], label="Multiple Lines", value="No"
+        ),
+        # Internet services section (key churn predictors)
+        gr.Dropdown(
+            ["DSL", "Fiber optic", "No"], label="Internet Service", value="Fiber optic"
+        ),
+        gr.Dropdown(
+            ["Yes", "No", "No internet service"], label="Online Security", value="No"
+        ),
+        gr.Dropdown(
+            ["Yes", "No", "No internet service"], label="Online Backup", value="No"
+        ),
+        gr.Dropdown(
+            ["Yes", "No", "No internet service"], label="Device Protection", value="No"
+        ),
+        gr.Dropdown(
+            ["Yes", "No", "No internet service"], label="Tech Support", value="No"
+        ),
+        gr.Dropdown(
+            ["Yes", "No", "No internet service"], label="Streaming TV", value="Yes"
+        ),
+        gr.Dropdown(
+            ["Yes", "No", "No internet service"], label="Streaming Movies", value="Yes"
+        ),
+        # Contract and billing section (major churn factors)
+        gr.Dropdown(
+            ["Month-to-month", "One year", "Two year"],
+            label="Contract",
+            value="Month-to-month",
+        ),
+        gr.Dropdown(["Yes", "No"], label="Paperless Billing", value="Yes"),
         gr.Dropdown(
             [
                 "Electronic check",
@@ -296,11 +194,41 @@ demo = gr.Interface(
                 "Credit card (automatic)",
             ],
             label="Payment Method",
+            value="Electronic check",
         ),
-        gr.Number(label="Tenure (months)"),
-        gr.Number(label="Monthly Charges"),
-        gr.Number(label="Total Charges"),
+        # Numeric features (important for churn prediction)
+        gr.Number(label="Tenure (months)", value=1, minimum=0, maximum=100),
+        gr.Number(label="Monthly Charges ($)", value=85.0, minimum=0, maximum=200),
+        gr.Number(label="Total Charges ($)", value=85.0, minimum=0, maximum=10000),
     ],
+    # inputs=[
+    #     gr.Dropdown(["Male", "Female"], label="Gender"),
+    #     gr.Dropdown(["Yes", "No"], label="Partner"),
+    #     gr.Dropdown(["Yes", "No"], label="Dependents"),
+    #     gr.Dropdown(["Yes", "No"], label="Phone Service"),
+    #     gr.Dropdown(["Yes", "No", "No phone service"], label="Multiple Lines"),
+    #     gr.Dropdown(["DSL", "Fiber optic", "No"], label="Internet Service"),
+    #     gr.Dropdown(["Yes", "No", "No internet service"], label="Online Security"),
+    #     gr.Dropdown(["Yes", "No", "No internet service"], label="Online Backup"),
+    #     gr.Dropdown(["Yes", "No", "No internet service"], label="Device Protection"),
+    #     gr.Dropdown(["Yes", "No", "No internet service"], label="Tech Support"),
+    #     gr.Dropdown(["Yes", "No", "No internet service"], label="Streaming TV"),
+    #     gr.Dropdown(["Yes", "No", "No internet service"], label="Streaming Movies"),
+    #     gr.Dropdown(["Month-to-month", "One year", "Two year"], label="Contract"),
+    #     gr.Dropdown(["Yes", "No"], label="Paperless Billing"),
+    #     gr.Dropdown(
+    #         [
+    #             "Electronic check",
+    #             "Mailed check",
+    #             "Bank transfer (automatic)",
+    #             "Credit card (automatic)",
+    #         ],
+    #         label="Payment Method",
+    #     ),
+    #     gr.Number(label="Tenure (months)"),
+    #     gr.Number(label="Monthly Charges"),
+    #     gr.Number(label="Total Charges"),
+    # ],
     outputs="text",
     title="🔮 Telco Customer Churn Predictor",
     description="""
